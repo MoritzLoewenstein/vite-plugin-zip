@@ -1,7 +1,12 @@
 {
 	"name": "@moritzloewenstein/vite-plugin-zip",
+
 	"version": "1.0.1",
 	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MoritzLoewenstein/vite-plugin-zip"
+	},
 	"description": "",
 	"files": [
 		"dist"
@@ -29,7 +34,7 @@
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"dependencies": {
 		"archiver": "^7.0.1"
 	},
