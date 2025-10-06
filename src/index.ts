@@ -38,7 +38,7 @@ export type Options = {
 	beforeClose: (archive: archiver.Archiver) => void;
 };
 
-export function vitePluginZip(pluginOptions: Options): Plugin {
+export default function vitePluginZip(pluginOptions: Options): Plugin {
 	let config: ResolvedConfig;
 	pluginOptions.zipName ??= "dist.zip";
 	pluginOptions.exclude ??= [];
