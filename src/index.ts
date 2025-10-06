@@ -35,7 +35,7 @@ export type Options = {
 	 * @link https://www.npmjs.com/package/archiver
 	 * @default () => {}
 	 */
-	beforeClose: (archive: archiver.Archiver) => void
+	beforeClose: (archive: archiver.Archiver) => void;
 };
 
 export function vitePluginZip(pluginOptions: Options): Plugin {
