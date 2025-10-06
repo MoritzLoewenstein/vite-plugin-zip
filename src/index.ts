@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs, { type Dirent } from "node:fs";
 import path from "node:path";
 import archiver from "archiver";
 import type { Plugin, ResolvedConfig } from "vite";
@@ -16,7 +16,7 @@ export type Options = {
 	exclude: string[] | string;
 	/**
 	 * Zip Archive Name
-	 * @example: 'project.zip'
+	 * @default: 'dist.zip'
 	 */
 	zipName: string;
 	/**
@@ -24,10 +24,18 @@ export type Options = {
 	 * @default false
 	 */
 	silent: boolean;
+	/**
+	 * custom handler for files, return true if file was handled
+	 * @default () => false
+	 */
+	handleFile: (archive: archiver.Archiver, dirEnt: Dirent) => boolean;
 };
 
 export function vitePluginZip(pluginOptions: Options): Plugin {
 	let config: ResolvedConfig;
+	pluginOptions.exclude ??= [];
+	pluginOptions.handleFile ??= () => false;
+	pluginOptions.zipName ??= "dist.zip";
 	return {
 		name: "vite-plugin-zip",
 		apply: "build",
@@ -85,9 +93,19 @@ async function zipOutput(
 	const allFiles = fs.globSync(pluginOptions.include, {
 		cwd,
 		exclude: excludeArr,
+		withFileTypes: true,
 	});
-	for (const relFilePath of allFiles) {
-		const filePath = path.join(cwd, relFilePath);
+
+	for (const dirEnt of allFiles) {
+		if (!dirEnt.isFile()) {
+			continue;
+		}
+		const handled = pluginOptions.handleFile(archive, dirEnt);
+		if (handled) {
+			continue;
+		}
+		const filePath = path.join(dirEnt.parentPath, dirEnt.name);
+		const relFilePath = path.relative(cwd, filePath);
 		archive.file(filePath, { name: relFilePath });
 	}
 	archive.finalize();
