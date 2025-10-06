@@ -25,17 +25,25 @@ export type Options = {
 	 */
 	silent: boolean;
 	/**
-	 * custom handler for files, return true if file was handled
+	 * custom handler for files, return true if file was handled, otherwise default handling
+	 * @link https://www.npmjs.com/package/archiver
 	 * @default () => false
 	 */
 	handleFile: (archive: archiver.Archiver, dirEnt: Dirent) => boolean;
+	/**
+	 * add more content to archive before it is closed
+	 * @link https://www.npmjs.com/package/archiver
+	 * @default () => {}
+	 */
+	beforeClose: (archive: archiver.Archiver) => void
 };
 
 export function vitePluginZip(pluginOptions: Options): Plugin {
 	let config: ResolvedConfig;
+	pluginOptions.zipName ??= "dist.zip";
 	pluginOptions.exclude ??= [];
 	pluginOptions.handleFile ??= () => false;
-	pluginOptions.zipName ??= "dist.zip";
+	pluginOptions.beforeClose ??= () => {};
 	return {
 		name: "vite-plugin-zip",
 		apply: "build",
@@ -108,6 +116,7 @@ async function zipOutput(
 		const relFilePath = path.relative(cwd, filePath);
 		archive.file(filePath, { name: relFilePath });
 	}
+	pluginOptions.beforeClose(archive);
 	archive.finalize();
 	return promise;
 }
