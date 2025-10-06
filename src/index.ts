@@ -45,7 +45,7 @@ export default function vitePluginZip(pluginOptions: Options): Plugin {
 	pluginOptions.handleFile ??= () => false;
 	pluginOptions.beforeClose ??= () => {};
 	return {
-		name: "vite-plugin-zip",
+		name: "moritzloewenstein:vite-plugin-zip",
 		apply: "build",
 		enforce: "post",
 		configResolved(_config: ResolvedConfig): void {

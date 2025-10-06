@@ -31,8 +31,13 @@
 		"test:only": "node --test --test-only",
 		"test:watch": "node --test --watch test"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"vite-plugin"
+	],
+	"author": {
+		"name": "Moritz Löwenstein",
+		"url": "https://github.com/MoritzLoewenstein"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"archiver": "^7.0.1"
