@@ -86,11 +86,11 @@ async function zipOutput(
 		cwd,
 		exclude: excludeArr,
 	});
-	//TODO does this include dirs? if it includes dirs, does it also include all files inside them?
-	for (const filePath of allFiles) {
-		const relFilePath = path.relative(cwd, filePath);
+	for (const relFilePath of allFiles) {
+		const filePath = path.join(cwd, relFilePath);
 		archive.file(filePath, { name: relFilePath });
 	}
+	archive.finalize();
 	return promise;
 }
 
