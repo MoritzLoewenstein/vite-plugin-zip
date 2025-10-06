@@ -1,5 +1,5 @@
 {
-	"name": "vite-plugin-zip",
+	"name": "@moritzloewenstein/vite-plugin-zip",
 	"version": "1.0.0",
 	"type": "module",
 	"description": "",
