@@ -50,7 +50,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.5",
+		"@types/adm-zip": "^0.5.7",
 		"@types/archiver": "^6.0.3",
+		"adm-zip": "^0.5.16",
 		"tsdown": "^0.15.6",
 		"typescript": "^5.9.3"
 	}
