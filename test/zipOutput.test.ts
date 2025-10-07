@@ -4,7 +4,7 @@ import path from "node:path";
 import { after, before, describe, it } from "node:test";
 import AdmZip from "adm-zip";
 import type { ResolvedConfig } from "vite";
-import vitePluginZip from "../dist/index.js";
+import vitePluginZip from "../src/index.ts";
 
 describe("zipOutput functionality", () => {
 	const testDir = path.join(process.cwd(), "test-fixtures-zip");

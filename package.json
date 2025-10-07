@@ -29,7 +29,7 @@
 		"biome:ci": "biome ci .",
 		"test": "node --test",
 		"test:only": "node --test --test-only",
-		"test:watch": "node --test --watch test"
+		"test:watch": "node --test --watch"
 	},
 	"keywords": [
 		"vite-plugin"

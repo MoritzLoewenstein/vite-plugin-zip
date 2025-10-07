@@ -6,7 +6,7 @@ import { after, before, describe, it } from "node:test";
 import AdmZip from "adm-zip";
 import type { Archiver } from "archiver";
 import type { ResolvedConfig } from "vite";
-import vitePluginZip from "../dist/index.js";
+import vitePluginZip from "../src/index.ts";
 
 describe("plugin hooks", () => {
 	const testDir = path.join(process.cwd(), "test-fixtures-hooks");

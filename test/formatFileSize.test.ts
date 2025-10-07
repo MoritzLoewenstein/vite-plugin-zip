@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { formatFileSize } from "../dist/index.js";
+import { formatFileSize } from "../src/index.ts";
 
 describe("formatFileSize", () => {
 	it("should format bytes correctly", () => {

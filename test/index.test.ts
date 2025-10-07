@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { after, before, describe, it } from "node:test";
 import type { ResolvedConfig } from "vite";
-import vitePluginZip from "../dist/index.js";
+import vitePluginZip from "../src/index.ts";
 
 describe("vitePluginZip - Basic Plugin Configuration", () => {
 	const testDir = path.join(process.cwd(), "test-fixtures-basic");
