@@ -1,6 +1,6 @@
 {
 	"name": "@moritzloewenstein/vite-plugin-zip",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -40,7 +40,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"archiver": "^7.0.1"
+		"archiver": "^8.0.0"
 	},
 	"volta": {
 		"node": "22.20.0"
@@ -49,12 +49,13 @@
 		"vite": "^8.0.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.10",
-		"@types/adm-zip": "^0.5.8",
-		"@types/archiver": "^7.0.0",
-		"adm-zip": "^0.5.17",
-		"tsdown": "^0.21.7",
-		"typescript": "^6.0.2",
-		"vitest": "^4.1.2"
+		"@biomejs/biome": "^2.6.2",
+		"@types/archiver": "^8.0.0",
+		"@types/node": "^22.20.5",
+		"adm-zip": "^0.6.1",
+		"tsdown": "^0.23.1",
+		"typescript": "^7.0.2",
+		"vite": "^8.3.5",
+		"vitest": "^5.0.5"
 	}
 }

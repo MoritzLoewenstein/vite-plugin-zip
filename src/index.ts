@@ -1,6 +1,6 @@
 import fs, { type Dirent } from "node:fs";
 import path from "node:path";
-import archiver from "archiver";
+import { type Archiver, ZipArchive } from "archiver";
 import type { ResolvedConfig } from "vite";
 
 export type UserOptions = {
@@ -29,13 +29,13 @@ export type UserOptions = {
 	 * @link https://www.npmjs.com/package/archiver
 	 * @default null
 	 */
-	handleFile?: (archive: archiver.Archiver, dirEnt: Dirent) => boolean;
+	handleFile?: (archive: Archiver, dirEnt: Dirent) => boolean;
 	/**
 	 * add more content to archive before it is closed
 	 * @link https://www.npmjs.com/package/archiver
 	 * @default () => {}
 	 */
-	beforeClose?: (archive: archiver.Archiver) => void;
+	beforeClose?: (archive: Archiver) => void;
 };
 
 export type ResolvedOptions = {
@@ -43,8 +43,8 @@ export type ResolvedOptions = {
 	exclude: string[] | string;
 	zipName: string;
 	silent: boolean;
-	handleFile: ((archive: archiver.Archiver, dirEnt: Dirent) => boolean) | null;
-	beforeClose: (archive: archiver.Archiver) => void;
+	handleFile: ((archive: Archiver, dirEnt: Dirent) => boolean) | null;
+	beforeClose: (archive: Archiver) => void;
 };
 
 export type VitePluginZip = {
@@ -98,7 +98,7 @@ export async function zipOutput(
 	const distDir = path.join(cwd, viteConfig.build.outDir);
 	const ZIP_OUT_FILE = path.join(distDir, pluginOptions.zipName);
 	const output = fs.createWriteStream(ZIP_OUT_FILE);
-	const archive = archiver("zip", {
+	const archive = new ZipArchive({
 		zlib: { level: -1 },
 	});
 	output.on("close", () => {
